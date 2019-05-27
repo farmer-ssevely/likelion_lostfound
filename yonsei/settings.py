@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'startpage',
     'django_extensions',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+}
