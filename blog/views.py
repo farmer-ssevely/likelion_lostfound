@@ -4,6 +4,7 @@ from .forms import PostForm, CommentForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 # Create your views here.
+
 def home(request):
     posts = Post.objects.all().order_by('-updated_at')
     paginator = Paginator(posts, 3)
