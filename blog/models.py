@@ -22,7 +22,7 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to="images/", default='static/images/logo.jpg', null=True)
+    image = models.ImageField(upload_to="media/images/", default='static/images/logo.jpg', null=True)
     found_place = models.CharField(max_length=10, choices = places, default= '경')
     kept_place = models.CharField(max_length=10, choices = places, default= '경')
     item_type = models.CharField(max_length=10, choices = items, default='필')
