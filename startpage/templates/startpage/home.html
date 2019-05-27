@@ -1,0 +1,371 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Yonsei Lost & Found</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{% static 'startpage/assets/css/main.css' %}" />
+		<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script|Song+Myung&display=swap&subset=korean" rel="stylesheet">
+		<style>
+			p.a{
+				font-family: 'Nanum Pen Script', cursive; font-size: 26px;
+			}
+			p.b{
+				font-family: 'Song Myung', serif; font-size: 18px;
+			}
+		</style>
+		<noscript><link rel="stylesheet" href="{% static 'startpage/assets/css/noscript.css' %}" /></noscript>
+	</head>
+
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+					<button type="button" class="btn btn-secondary" style="margin-left: 1200px"><a href="/">Login</a></button>
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span><a href="https://yscec.yonsei.ac.kr"><img style="margin-top: 7px" src="{% static 'startpage/images/yonsei.png' %}" alt="" width="70"/></a></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>Yonsei Lost & Found</h1>
+								<p>This site is unique Yonsei Lost & Found platform.<br> We will find your goods.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#intro">Intro</a></li>
+								<li><a href="#songdo">Songdo</a></li>
+								<li><a href="/">Sinchon</a></li>
+								<li><a href="#contact">Contact</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">Intro</h2>
+								<span class="image main"><img src="{% static 'startpage/images/pic01.jpg' %}" alt="" /></span> 
+								<!--여기 이미지에 로고 넣거나 아니면 우리들의 사진을 넣거나 ! -->
+								<p class="b">연세대학교 유일무이 분실물 플랫폼 Yonsei Lost & Found, YLF입니다. 연세대학교에서 잃어버린 물건들을 최대한 빠르고 효율적으로 찾을 수 있도록 하는 통일된 플랫폼으로서, 분실물 현황 업데이트 뿐만 아니라 직접적인 글 작성과 검색을 통해 분실물을 되찾을 수 있는 방법을 연구 중에 있습니다.</p>
+								<p>Yonsei Lost & Found Avengers<br>
+									강동진 (Dongjin Kang) <a href="https://www.instagram.com/farmer.ssevely/" class="icon fa-instagram"></a>
+									김세정 (Sejung Kim) <a href="https://www.instagram.com/farmer.ssevely/" class="icon fa-instagram"></a>
+									신희주 (heejoo Shin) <a href="https://www.instagram.com/farmer.ssevely/" class="icon fa-instagram"></a>
+									이다현 (Dahyun Lee) <a href="https://www.instagram.com/farmer.ssevely/" class="icon fa-instagram"></a>
+								</p>
+							</article>
+
+						<!-- Work -->
+							<article id="songdo">
+								<h2 class="major">Songdo</h2>
+								<span class="image main"><img src="{% static 'startpage/images/songdo.png' %}" alt="" /></span>
+								<!--송도캠퍼스 사진-->
+								
+								<p class="a" style="text-align: center;">연세대학교 송도캠퍼스의 Yonsei Lost & Found는 현재 준비 중입니다.<br>
+									조금만 더 기다려주세요! </p>
+							</article>
+
+						<!-- Contact -->
+							<article id="contact">
+								<h2 class="major">Contact</h2>
+								<form method="post" action="/contact">
+									{% csrf_token %}
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="4"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</form>
+							</article>
+
+							<article id="success">
+								<h2 class="major">success</h2>
+								<p class="a" style="text-align: center;">제출에 성공하셨습니다.</p>
+							</article>
+
+							<!-- Elements -->
+							<article id="elements">
+															<h2 class="major">Elements</h2>
+							
+															<section>
+																<h3 class="major">Text</h3>
+																<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+																This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+																This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+																<hr />
+																<h2>Heading Level 2</h2>
+																<h3>Heading Level 3</h3>
+																<h4>Heading Level 4</h4>
+																<h5>Heading Level 5</h5>
+																<h6>Heading Level 6</h6>
+																<hr />
+																<h4>Blockquote</h4>
+																<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+																<h4>Preformatted</h4>
+																<pre><code>i = 0;
+							
+							
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Primary</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button primary icon fa-download">Icon</a></li>
+										<li><a href="#" class="button icon fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button primary disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="demo-name">Name</label>
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+											</div>
+											<div class="field half">
+												<label for="demo-email">Email</label>
+												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+											</div>
+											<div class="field">
+												<label for="demo-category">Category</label>
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+												<label for="demo-priority-low">Low</label>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-high" name="demo-priority">
+												<label for="demo-priority-high">High</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-copy" name="demo-copy">
+												<label for="demo-copy">Email me a copy</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-human" name="demo-human" checked>
+												<label for="demo-human">Not a robot</label>
+											</div>
+											<div class="field">
+												<label for="demo-message">Message</label>
+												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Yonsei Lost & Found ; dongjin_sejung_heejoo_dahyun</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id='bg'></div>
+
+		<!-- Scripts -->
+			<script src="{% static 'startpage/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'startpage/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'startpage/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'startpage/assets/js/util.js' %}"></script>
+			<script src="{% static 'startpage/assets/js/main.js' %}"></script>
+	</body>
+</html>
