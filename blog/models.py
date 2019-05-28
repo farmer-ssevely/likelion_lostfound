@@ -22,17 +22,10 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-<<<<<<< HEAD
-    image = models.ImageField(upload_to="media/images/", default='static/images/logo.jpg', null=True)
-    found_place = models.CharField(max_length=10, choices = places, default= '경')
-    kept_place = models.CharField(max_length=10, choices = places, default= '경')
-    item_type = models.CharField(max_length=10, choices = items, default='필')
-=======
-    image = models.ImageField(upload_to="images/", default='static/images/logo.jpg', blank=True)
+    image = models.ImageField(upload_to="images/", blank=True)
     found_place = models.CharField(max_length=10, choices = places, default= '경영관')
     kept_place = models.CharField(max_length=10, choices = places, default= '경영관')
     item_type = models.CharField(max_length=10, choices = items, default='필기구')
->>>>>>> af8134a2a2902b6d9f24d14f98dc83787e3d640a
     found_date = models.DateField(validators=[no_future])
 
     def __str__(self):

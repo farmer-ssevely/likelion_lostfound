@@ -20,7 +20,7 @@ def category(request, post_item_type):
     category = Post.objects.all().select_related(post_item_type)
     return render(request, 'blog/category.html', {'category': category} )
 
-def new(request):
+""" def new(request):
     if request.method == 'POST':
         post = Post()
         post.title = request.POST.get('title')
@@ -29,23 +29,24 @@ def new(request):
         post.found_place = request.POST.get('found_place')
         post.kept_place = request.POST.get('kept_place')
         post.item_type = request.POST.get('item_type')
-        post.image = request.POST.get('image')
+        post.image = request.FILES['image']
         post.author = request.user
         post.save()
         return redirect('detail', post.pk)
     else:
-        return render(request, 'blog/new.html')
+        return render(request, 'blog/new.html') """
 
-""" def new(request):
+def new(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit = False) # commit은 데이터베이스의 모든 작업이 저장되었을 때 True가 되는데, 그러면 comment를 더이상 수정하지 못 하게 됨, 우선 commit = False를 해서 뒤에 작업들을 할 수 있게 해줌
             post.author = request.user
             post.save()  # 여기는 default가 commit = True라서 따로 설정 안 해줌
+            return redirect('detail', post.pk)
     else:
         form = PostForm()
-    return render(request, 'blog/new.html', {'form': form}) """
+    return render(request, 'blog/new.html')
 
 def edit(request, post_id):
     if request.method == 'POST':

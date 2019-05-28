@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'startpage',
+    'django.contrib.sites',
     'django_extensions',
+    'startpage',
     'blog',
 ]
 
@@ -131,3 +132,5 @@ AUTHENTICATION_BACKENDS = {
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 }
+
+SITE_ID = 1

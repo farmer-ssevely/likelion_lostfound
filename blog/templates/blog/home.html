@@ -9,7 +9,15 @@
         {% for post in post_page %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
+            <br>
+            {% if post.image %}
             <img src="{{post.image.url}}" height=200 alt="사진">
+            {% else %}
+            <div style="display: flex; justify-content: center;">
+                <img src= "../../static/images/logo.jpg" height=200 width=200 align="middle" alt="로고">
+            </div>
+            
+            {% endif %}
             <div class="card-body">
               <p class="card-text">{{post.title}}
               <br><small>물건종류: {{post.item_type}} <br>  습득 장소: {{post.found_place}}</small></p>
