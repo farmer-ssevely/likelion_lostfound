@@ -13,11 +13,16 @@
     <p>물건 종류: {{post.item_type}}</p>
     <p>습득 날짜: {{post.found_date}}</p>
     <br>
-    <a href="{% url 'posthome' %}">홈으로 돌아가기</a>
 
-    {% if post.author == user.username %}
-        <a href="{% url 'edit' post.pk %}">수정</a>
-        <a href="{% url 'remove' post.pk %}">삭제</a>
+    {% if post.author == user %}
+        <!-- <a href="{% url 'edit' post.pk %}">수정</a>
+        <a href="{% url 'remove' post.pk %}">삭제</a> -->
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-secondary" href="{% url 'edit' post.pk %}">수정</a>
+            <a class="btn btn-secondary" href="{% url 'remove' post.pk %}">삭제</a>
+        </div>
+    {% else %}
+    <p>글 수정 권한이 없습니다.</p>
     {% endif %}
 </div>
 <div class="container mt-5">

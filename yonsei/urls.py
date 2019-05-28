@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-import startpage.views, blog.views
+import startpage.views, blog.views, loginout.views
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -24,4 +24,6 @@ urlpatterns = [
     path('',startpage.views.home, name='home'),
     path('contact', startpage.views.contact, name='contact'),
     path('blog/',include('blog.urls')),
+    path('loginout/', include('loginout.urls')),
+    path('loginout/', include('allauth.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
