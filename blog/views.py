@@ -84,3 +84,7 @@ def removecomment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
     return redirect('detail', post_id = comment.post.pk)
+
+def search(request):
+
+    return render(request,'blog/search.html')

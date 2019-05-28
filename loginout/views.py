@@ -29,6 +29,9 @@ def signup(request):
             if checkemail(request.POST['email']):
                 messages.error(request, '이미 사용 중인 이메일 주소입니다.')
                 return render(request, 'loginout/signup.html')
+            user = User.objects.create_user(username=request.POST['username'], password=request.POST['confirm-password'], email=request.POST['email'])
+            auth.login(request, user, backend ='django.contrib.auth.backends.ModelBackend')
+            return redirect('home')
         else:
             messages.error(request, '비밀번호가 일치하지 않습니다. 다시 입력해주세요.')
             return render(request, 'loginout/signup.html')
@@ -52,7 +55,7 @@ def login(request):
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            return redirect('posthome')
         else:
             messages.error(request, '아이디 또는 비밀번호가 일치하지 않습니다.')
             return render(request, 'loginout/login.html', {'error':'username or password is incorrect'})
