@@ -1,10 +1,171 @@
-{% extends 'blog/base.html' %}
-{% block contents %}
-<div class="container mt-5">
-    <h1>Edit Page</h1>
-    <form method= "POST" enctype='multipart/form-data'>{% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" class="btn btn-dark" value='Edit!'>
-    </form>
-</div>
-{% endblock%}
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+	<title>글쓰기</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'blog/images/icons/favicon.ico'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+<!--===============================================================================================-->
+    <style>
+        body {
+        background-image: url("{% static 'images/yonsei.jpg' %}");
+        background-size: cover;
+
+        background-position: center center;
+        }
+        .contact100-form-title {
+            background-image: url("{% static 'images/bg-01.jpg' %}")
+        }
+    </style>
+</head>
+<body>
+
+
+	<div class="container-contact100">
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title">
+				<span class="contact100-form-title-1">
+					글 수정
+				</span>
+
+				<span class="contact100-form-title-2">
+					수정 사항을 반영해 주세요. :-)
+				</span>
+			</div>
+            <form class = "contact100-form validate-form" action="{%url 'edit' post.pk%}" method="POST" enctype="multipart/form-data">{% csrf_token %}                
+                
+                <div class="wrap-input100 validate-input" data-validate="제목을 작성해주세요">
+                    <span class="label-input100">글 제목:</span>
+                    <input class="input100" type="text" name="title" value=post_id.title >
+                    <span class="focus-input100"></span>
+                </div>
+            
+                <div class="wrap-input100 validate-input" data-validate = "물건 종류를 골라주세요">
+                    <span class="label-input100">물건 종류:</span>
+                    <select name="item_type" default={post.pk.item_type}}>
+                        <option value="필기류">필기류</option>
+                        <option value="지갑">지갑</option>
+                        <option value="전자기기">전자기기</option>
+                        <option value="의류">의류</option>
+                        <option value="신분증/카드">신분증/카드</option>
+                        <option value="기타">기타</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "습득 장소를 입력해주세요!">
+                    <span class="label-input100">습득 장소:</span>
+                    <select name="found_place" default={{post_id.found_place}}>
+                        <script>
+                            var c = [('경영관', '경영관'), ('공학원', '공학원'), ('공A', '제1공학관'), ('공B', '제2공학관'), ('공C', '제3공학관'), ('과학관', '과학관'), ('과학원', '과학원'), ('광복관', '광복관'), ('교육과학관', '교육과학관'), ('대강당', '대강당'), ('대우관', '대우관'), ('무악1학사', '무악1학사'), ('무악2학사', '무악2학사'), ('무악3학사', '무악3학사'), ('무악4학사', '무악4학사'), ('미우관', '미우관'), ('백양관', '백양관'), ('백양누리', '백양누리'), ('백주년기념관', '백주년기념관'), ('빌링슬리관', '빌링슬리관'), ('삼', '삼성관'), ('상남경영원', '상남경영원'), ('성암관', '성암관'), ('스팀슨관', '스팀슨관'), ('스포츠과학관', '스포츠과학관'), ('신학관', '신학관'), ('아펜젤러관', '아펜젤러관'), ('알렌관', '알렌관'), ('언더우드관', '언더우드관'), ('연희관', '연희관'), ('외솔관', '외솔관'), ('우정원', '우정원'), ('운동선수기숙사', '운동선수기숙사'), ('위당관', '위당관'), ('음악관', '음악관'), ('중앙도서관', '중앙도서관'), ('청송대', '청송대'), ('체육관', '체육관'), ('학생회관', '학생회관'), ('학술정보원', '학술정보원'), ('한경관', '한경관')]
+                            for(i=0; i<41; i++) {
+                                document.write("<option ="+c[i]+">"+c[i]+"</option>")
+                            }
+                        </script>
+                    </select>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate = "보관 장소를 입력해주세요!">
+                        <span class="label-input100">보관 장소:</span>
+                        <select name="kept_place" default={{post.kept_place}}>
+                            <script>
+                                var c = [('경영관', '경영관'), ('공학원', '공학원'), ('공A', '제1공학관'), ('공B', '제2공학관'), ('공C', '제3공학관'), ('과학관', '과학관'), ('과학원', '과학원'), ('광복관', '광복관'), ('교육과학관', '교육과학관'), ('대강당', '대강당'), ('대우관', '대우관'), ('무악1학사', '무악1학사'), ('무악2학사', '무악2학사'), ('무악3학사', '무악3학사'), ('무악4학사', '무악4학사'), ('미우관', '미우관'), ('백양관', '백양관'), ('백양누리', '백양누리'), ('백주년기념관', '백주년기념관'), ('빌링슬리관', '빌링슬리관'), ('삼', '삼성관'), ('상남경영원', '상남경영원'), ('성암관', '성암관'), ('스팀슨관', '스팀슨관'), ('스포츠과학관', '스포츠과학관'), ('신학관', '신학관'), ('아펜젤러관', '아펜젤러관'), ('알렌관', '알렌관'), ('언더우드관', '언더우드관'), ('연희관', '연희관'), ('외솔관', '외솔관'), ('우정원', '우정원'), ('운동선수기숙사', '운동선수기숙사'), ('위당관', '위당관'), ('음악관', '음악관'), ('중앙도서관', '중앙도서관'), ('청송대', '청송대'), ('체육관', '체육관'), ('학생회관', '학생회관'), ('학술정보원', '학술정보원'), ('한경관', '한경관')]
+                                for(i=0; i<41; i++) {
+                                    document.write("<option ="+c[i]+">"+c[i]+"</option>")
+                                }
+                            </script>
+                        </select>
+                        <span class="focus-input100"></span>
+                </div>
+            
+                <div class="wrap-input100 validate-input" data-validate="습득 날짜를 입력해주세요!">
+                    <span class="label-input100">습득 날짜: </span>
+                    <input class="input100" type="date" name="found_date" default={{post.found_date}}>
+                    <span class="focus-input100"></span>
+                </div>
+            
+                <div class="wrap-input100 validate-input" data-validate="내용을 입력해주세요!">
+                        <span class="label-input100">글 내용:</span>
+                        <textarea class="input100" name="content" default={{post.content}}></textarea>
+                        <span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+                        <span class="label-input100">분실물 사진:</span>
+                  <input type="file" name="image" accept="image/*" default={{post.image}}>
+                </div>
+				<div class="container-contact100-form-btn">
+					<!-- <button class="contact100-form-btn" type="submit">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+                    </button> -->
+                    <input type="submit" class="contact100-form-btn" value='Edit!'>
+                </div>
+                
+                <div class="container mt-5">
+                    <a href="{% url 'posthome' %}" align="middle">홈으로 돌아가기</a>
+                </div>
+                
+            </form>
+            
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js'%}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js'%}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js'%}"></script>
+<!--===============================================================================================-->
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+    <script src="{% static 'js/map-custom.js'%}"></script> -->
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js'%}"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+
+</body>
+</html>
