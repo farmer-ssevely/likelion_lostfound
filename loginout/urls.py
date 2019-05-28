@@ -5,5 +5,5 @@ urlpatterns = [
     path('login/', views.login, name="login"),
     path('logout/', views.logout, name="logout"),
     path('findpassword/', views.findpassword, name="findpassword"),
-    path('changepassword/', views.changepassword, name="changepassword"),
+    path('changepassword/<int:user_pk>', views.changepassword, name="changepassword"),
 ]

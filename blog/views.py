@@ -16,9 +16,9 @@ def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     return render(request, 'blog/detail.html', {'post': post})
 
-def category(request, post_item_type):
-    category = Post.objects.all().select_related(post_item_type)
-    return render(request, 'blog/category.html', {'category': category} )
+# def category(request, post_item_type):
+#     category = Post.objects.all().select_related(post_item_type)
+#     return render(request, 'blog/category.html', {'category': category} )
 
 """ def new(request):
     if request.method == 'POST':
