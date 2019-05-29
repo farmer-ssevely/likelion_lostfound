@@ -17,13 +17,43 @@
 <link href="{% static 'plugins/colorbox/colorbox.css' %}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+<style>
+        html, body
+    {
+        height: 100%;
+    }
+
+    body
+    {
+        display: table;
+        margin: 0 auto;
+        background-image: url("{% static 'images/yonsei.jpg' %}");
+        background-size: cover;
+        background-position: center center;                    
+    }
+
+    .container
+    {
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle;
+        background-color: transparent
+    }
+
+    .main
+    {
+        height: 200px;
+        width: 200px;
+        background-color: blue;      
+    }
+    .ivory
+    {
+        color:ivory ;
+    }
+</style>
 </head>
+
 <body>
-
-<div class="super_container">
-	
-	<!-- Header -->
-
 	<header class="header">
 		<div class="header_content d-flex flex-row align-items-center justify-content-start">
 			<div class="logo"><a href="#">The River</a></div>
@@ -39,7 +69,7 @@
 				</nav>
 				<div class="book_button"><a href="booking.html">Book Online</a></div>
 				<div class="header_phone d-flex flex-row align-items-center justify-content-center">
-					<img src="images/phone.png" alt="">
+					<img src="{% static 'images/phone.png' %}" alt="">
 					<span>0183-12345678</span>
 				</div>
 
@@ -67,12 +97,34 @@
 		<div class="menu_extra">
 			<div class="menu_book text-right"><a href="#">Book online</a></div>
 			<div class="menu_phone d-flex flex-row align-items-center justify-content-center">
-				<img src="images/phone-2.png" alt="">
+				<img src="{% static 'images/phone-2.png' %}" alt="">
 				<span>0183-12345678</span>
 			</div>
 		</div>
     </div>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="home_content text-center">
+                    <div class="home_title">A Luxury Stay</div>
+                    <div class="booking_form_container">
+                        <form action="#" class="booking_form">
+                            <div class="d-flex flex-xl-row flex-column align-items-start justify-content-start">
+                                <div class="booking_input_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                                    <div><input type="text" class="datepicker booking_input booking_input_a booking_in" placeholder="Check in" required="required"></div>
+                                    <div><input type="text" class="datepicker booking_input booking_input_a booking_out" placeholder="Check out" required="required"></div>
+                                    <div><input type="number" class="booking_input booking_input_b" placeholder="Children" required="required"></div>
+                                    <div><input type="number" class="booking_input booking_input_b" placeholder="Room" required="required"></div>
+                                </div>
+                                <div><button class="booking_button trans_200">Book Now</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'styles/bootstrap-4.1.2/popper.js' %}"></script>
     <script src="{% static 'styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
