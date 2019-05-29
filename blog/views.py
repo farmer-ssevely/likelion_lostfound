@@ -123,11 +123,11 @@ def result(request):
         keyword1 = request.GET.get('keyword1')
         keyword2 = request.GET.get('keyword2')
         if ((keyword1 is not None) and (keyword2 is not None)):
-            results = Post.objects.filter(Q(item_type__icontains=keyword1) & Q(kept_place__icontains=keyword2))
-            paginator = Paginator(results, 3)
+            posts = Post.objects.filter(Q(item_type__icontains=keyword1) & Q(kept_place__icontains=keyword2))
+            paginator = Paginator(posts, 3)
             page = request.GET.get('page')
             post_page = paginator.get_page(page)
-            return render(request, 'blog/home.html', {'posts': results, 'post_page': post_page}) 
+            return render(request, 'blog/searchhome.html', {'posts': posts, 'post_page': post_page, 'keyword1':keyword1, 'keyword2':keyword2}) 
         else:
             return render(request,'blog/search.html')
     else:
