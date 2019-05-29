@@ -49,6 +49,20 @@ def new(request):
     return render(request, 'blog/new.html')
 
 def edit(request, post_id):
+    if request.method == "POST":
+        post = get_object_or_404(Post, pk=post_id)
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save()
+            post.save()
+            return redirect('detail', post.pk)
+    else:
+        post = get_object_or_404(Post, pk=post_id)
+        form = PostForm(instance=post)
+    return render(request, 'blog/edit.html', {'post': post, 'form': form})
+
+""" 
+def edit(request, post_id):
     if request.method == 'POST':
         post = get_object_or_404(Post, pk=post_id)
         form = PostForm(request.POST, request.FILES, instance=post)
@@ -59,6 +73,20 @@ def edit(request, post_id):
         post = get_object_or_404(Post, pk=post_id)
         form = PostForm(instance=post)
     return render(request, 'blog/edit.html', {'post': post, 'form': form})
+
+
+    def edit(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=post_id)
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('detail', post.pk)
+    else:
+        post = get_object_or_404(Post, pk=post_id)
+        form = PostForm(instance=post)
+    return render(request, 'blog/edit.html', {'post': post, 'form': form}) """
 
 def remove(request, post_id):
     post = get_object_or_404(Post, pk=post_id)

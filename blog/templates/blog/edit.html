@@ -52,34 +52,41 @@
 					수정 사항을 반영해 주세요. :-)
 				</span>
 			</div>
-            <form class = "contact100-form validate-form" action="{%url 'edit' post.pk%}" method="POST" enctype="multipart/form-data">{% csrf_token %}                
-                
+            <form class = "contact100-form validate-form" method="POST" action="{% url 'edit' post.pk %}" enctype="multipart/form-data">{% csrf_token %}                                
                 <div class="wrap-input100 validate-input" data-validate="제목을 작성해주세요">
                     <span class="label-input100">글 제목:</span>
-                    <input class="input100" type="text" name="title" value=post_id.title >
+                    <input class="input100" type="text" name="title" value="{{post.title}}">
                     <span class="focus-input100"></span>
                 </div>
             
                 <div class="wrap-input100 validate-input" data-validate = "물건 종류를 골라주세요">
                     <span class="label-input100">물건 종류:</span>
-                    <select name="item_type" default={post.pk.item_type}}>
-                        <option value="필기류">필기류</option>
-                        <option value="지갑">지갑</option>
-                        <option value="전자기기">전자기기</option>
-                        <option value="의류">의류</option>
-                        <option value="신분증/카드">신분증/카드</option>
-                        <option value="기타">기타</option>
+                    <select name="item_type">
+                            <script>
+                                var t = ["필기류", "지갑", "전자기기", "의류", "신분증/카드", "기타"]
+                                for(i=0; i<5; i++) {
+                                    if ("{{post.item_type}}"==t[i]){
+                                        document.write("<option ="+t[i]+" selected>"+t[i]+"</option>")
+                                    }else{
+                                        document.write("<option ="+t[i]+">"+t[i]+"</option>")
+                                    }                                    
+                                }
+                            </script>
                     </select>
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "습득 장소를 입력해주세요!">
                     <span class="label-input100">습득 장소:</span>
-                    <select name="found_place" default={{post_id.found_place}}>
+                    <select name="found_place" value="{{post.found_place}}">
                         <script>
                             var c = [('경영관', '경영관'), ('공학원', '공학원'), ('공A', '제1공학관'), ('공B', '제2공학관'), ('공C', '제3공학관'), ('과학관', '과학관'), ('과학원', '과학원'), ('광복관', '광복관'), ('교육과학관', '교육과학관'), ('대강당', '대강당'), ('대우관', '대우관'), ('무악1학사', '무악1학사'), ('무악2학사', '무악2학사'), ('무악3학사', '무악3학사'), ('무악4학사', '무악4학사'), ('미우관', '미우관'), ('백양관', '백양관'), ('백양누리', '백양누리'), ('백주년기념관', '백주년기념관'), ('빌링슬리관', '빌링슬리관'), ('삼', '삼성관'), ('상남경영원', '상남경영원'), ('성암관', '성암관'), ('스팀슨관', '스팀슨관'), ('스포츠과학관', '스포츠과학관'), ('신학관', '신학관'), ('아펜젤러관', '아펜젤러관'), ('알렌관', '알렌관'), ('언더우드관', '언더우드관'), ('연희관', '연희관'), ('외솔관', '외솔관'), ('우정원', '우정원'), ('운동선수기숙사', '운동선수기숙사'), ('위당관', '위당관'), ('음악관', '음악관'), ('중앙도서관', '중앙도서관'), ('청송대', '청송대'), ('체육관', '체육관'), ('학생회관', '학생회관'), ('학술정보원', '학술정보원'), ('한경관', '한경관')]
                             for(i=0; i<41; i++) {
-                                document.write("<option ="+c[i]+">"+c[i]+"</option>")
+                                if ("{{post.found_place}}"==c[i]){
+                                    document.write("<option ="+c[i]+" selected>"+c[i]+"</option>")
+                                }else{
+                                    document.write("<option ="+c[i]+">"+c[i]+"</option>")
+                                }     
                             }
                         </script>
                     </select>
@@ -87,11 +94,15 @@
                 </div>
                 <div class="wrap-input100 validate-input" data-validate = "보관 장소를 입력해주세요!">
                         <span class="label-input100">보관 장소:</span>
-                        <select name="kept_place" default={{post.kept_place}}>
+                        <select name="kept_place" value="{{post.kept_place}}">
                             <script>
                                 var c = [('경영관', '경영관'), ('공학원', '공학원'), ('공A', '제1공학관'), ('공B', '제2공학관'), ('공C', '제3공학관'), ('과학관', '과학관'), ('과학원', '과학원'), ('광복관', '광복관'), ('교육과학관', '교육과학관'), ('대강당', '대강당'), ('대우관', '대우관'), ('무악1학사', '무악1학사'), ('무악2학사', '무악2학사'), ('무악3학사', '무악3학사'), ('무악4학사', '무악4학사'), ('미우관', '미우관'), ('백양관', '백양관'), ('백양누리', '백양누리'), ('백주년기념관', '백주년기념관'), ('빌링슬리관', '빌링슬리관'), ('삼', '삼성관'), ('상남경영원', '상남경영원'), ('성암관', '성암관'), ('스팀슨관', '스팀슨관'), ('스포츠과학관', '스포츠과학관'), ('신학관', '신학관'), ('아펜젤러관', '아펜젤러관'), ('알렌관', '알렌관'), ('언더우드관', '언더우드관'), ('연희관', '연희관'), ('외솔관', '외솔관'), ('우정원', '우정원'), ('운동선수기숙사', '운동선수기숙사'), ('위당관', '위당관'), ('음악관', '음악관'), ('중앙도서관', '중앙도서관'), ('청송대', '청송대'), ('체육관', '체육관'), ('학생회관', '학생회관'), ('학술정보원', '학술정보원'), ('한경관', '한경관')]
                                 for(i=0; i<41; i++) {
-                                    document.write("<option ="+c[i]+">"+c[i]+"</option>")
+                                    if ("{{post.kept_place}}"==c[i]){
+                                        document.write("<option ="+c[i]+" selected>"+c[i]+"</option>")
+                                    }else{
+                                        document.write("<option ="+c[i]+">"+c[i]+"</option>")
+                                }  
                                 }
                             </script>
                         </select>
@@ -100,19 +111,27 @@
             
                 <div class="wrap-input100 validate-input" data-validate="습득 날짜를 입력해주세요!">
                     <span class="label-input100">습득 날짜: </span>
-                    <input class="input100" type="date" name="found_date" default={{post.found_date}}>
+                    <input class="input100" type="date" name="found_date" value="{{post.found_date}}">
                     <span class="focus-input100"></span>
                 </div>
             
                 <div class="wrap-input100 validate-input" data-validate="내용을 입력해주세요!">
                         <span class="label-input100">글 내용:</span>
-                        <textarea class="input100" name="content" default={{post.content}}></textarea>
+                        <textarea class="input100" name="content">{{post.content}}</textarea>
                         <span class="focus-input100"></span>
                 </div>
                 
                 <div class="wrap-input100 validate-input">
-                        <span class="label-input100">분실물 사진:</span>
-                  <input type="file" name="image" accept="image/*" default={{post.image}}>
+                    <span class="label-input100">분실물 사진:</span>
+                    {% if post.image %}
+                        현재 사진: <img src="{{post.image.url}}" height=200 alt="사진">
+                        <br>
+                        새로운 사진 삽입을 위해서는:
+                        <input type="file" name="image" accept="image/*" value="{{post.image}}">
+                    {% else %}
+                        현재 사진이 없습니다.
+                        <input type="file" name="image" accept="image/*" value="{{post.image}}">
+                    {% endif %}
                 </div>
 				<div class="container-contact100-form-btn">
 					<!-- <button class="contact100-form-btn" type="submit">
@@ -125,7 +144,7 @@
                 </div>
                 
                 <div class="container mt-5">
-                    <a href="{% url 'posthome' %}" align="middle">홈으로 돌아가기</a>
+                    <a href="{% url 'posthome' %}">홈으로 돌아가기</a>
                 </div>
                 
             </form>
