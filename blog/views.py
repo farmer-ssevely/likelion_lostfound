@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, SearchForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 # Create your views here.
@@ -117,4 +117,20 @@ def search(request):
     return render(request,'blog/search.html')
 
 def result(request):
-    return render(request,'blog/search.html')
+    form = SearchForm(request.POST)
+    if request.method =="POST":
+        results = SearchForm(request.POST)
+        if results.is_valid():
+            itemObj = results.cleaned_data
+            itemtype = itemObj['item_type']
+            foundplace = itemObj['found_place']
+            if (itemtype is not None) & (foundplace is not None):
+                posts = Post.objects.filter(Q(item_type=itemtype) & Q(found_place=foundplace))
+                paginator = Paginator(posts, 3)
+                page = request.GET.get('page')
+                post_page = paginator.get_page(page)
+                return render(request, 'blog/home.html', {'posts': posts, 'post_page': post_page}) 
+        else:
+            return render(request,'blog/search.html')
+    else:
+        return render(request,'blog/search.html')
