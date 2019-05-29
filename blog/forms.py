@@ -16,8 +16,3 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)
-
-class SearchForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ('item_type','found_place')

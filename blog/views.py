@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment
-from .forms import PostForm, CommentForm, SearchForm
+from .forms import PostForm, CommentForm
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Q
 # Create your views here.
 
 def home(request):
@@ -117,19 +118,15 @@ def search(request):
     return render(request,'blog/search.html')
 
 def result(request):
-    form = SearchForm(request.POST)
-    if request.method =="POST":
-        results = SearchForm(request.POST)
-        if results.is_valid():
-            itemObj = results.cleaned_data
-            itemtype = itemObj['item_type']
-            foundplace = itemObj['found_place']
-            if (itemtype is not None) & (foundplace is not None):
-                posts = Post.objects.filter(Q(item_type=itemtype) & Q(found_place=foundplace))
-                paginator = Paginator(posts, 3)
-                page = request.GET.get('page')
-                post_page = paginator.get_page(page)
-                return render(request, 'blog/home.html', {'posts': posts, 'post_page': post_page}) 
+    if request.method =="GET":
+        keyword1 = request.GET.get('keyword1')
+        keyword2 = request.GET.get('keyword2')
+        if ((keyword1 is not None) and (keyword2 is not None)):
+            results = Post.objects.filter(Q(item_type__icontains=keyword1) & Q(kept_place__icontains=keyword2))
+            paginator = Paginator(results, 3)
+            page = request.GET.get('page')
+            post_page = paginator.get_page(page)
+            return render(request, 'blog/home.html', {'posts': results, 'post_page': post_page}) 
         else:
             return render(request,'blog/search.html')
     else:
