@@ -86,5 +86,7 @@ def removecomment(request, comment_id):
     return redirect('detail', post_id = comment.post.pk)
 
 def search(request):
+    return render(request,'blog/search.html')
 
+def result(request):
     return render(request,'blog/search.html')

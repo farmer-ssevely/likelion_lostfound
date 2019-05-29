@@ -11,4 +11,5 @@ urlpatterns = [
     path('post/<int:post_id>/newcomment', blog.views.newcomment, name='newcomment'),
     path('comment/<int:comment_id>/remove', blog.views.removecomment, name='removecomment'),
     path('search',blog.views.search, name='search'),
+    path('result',blog.views.result, name='result'),
 ]
