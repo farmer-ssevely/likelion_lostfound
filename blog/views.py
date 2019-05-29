@@ -115,7 +115,8 @@ def removecomment(request, comment_id):
     return redirect('detail', post_id = comment.post.pk)
 
 def search(request):
-    return render(request,'blog/search.html')
+    options = ['경영관', '공학원', '공A', '공B', '공C','과학관', '과학원', '광복관','교육과학관','대강당', '대우관', '무악1학사', '무악2학사', '무악3학사', '무악4학사', '미우관', '백양관', '백양누리', '백주년기념관', '빌링슬리관', '삼성관', '상남경영원', '성암관', '스팀슨관', '스포츠과학관', '신학관', '아펜젤러관', '알렌관', '언더우드관', '연희관', '외솔관', '우정원', '운동선수기숙사','위당관', '음악관', '중앙도서관', '청송대', '체육관', '학생회관', '학술정보원', '한경관']
+    return render(request,'blog/search.html', {'options':options})
 
 def result(request):
     if request.method =="GET":
